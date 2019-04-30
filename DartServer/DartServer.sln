@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartServer", "DartServer\DartServer.csproj", "{540E4723-B374-421E-977E-C7A6503D074C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartServerMessages", "DartServerMessages\DartServerMessages.csproj", "{7763A7E3-0BA0-4429-8523-CBEA5AF0E984}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{540E4723-B374-421E-977E-C7A6503D074C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{540E4723-B374-421E-977E-C7A6503D074C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{540E4723-B374-421E-977E-C7A6503D074C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{540E4723-B374-421E-977E-C7A6503D074C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7763A7E3-0BA0-4429-8523-CBEA5AF0E984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7763A7E3-0BA0-4429-8523-CBEA5AF0E984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7763A7E3-0BA0-4429-8523-CBEA5AF0E984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7763A7E3-0BA0-4429-8523-CBEA5AF0E984}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5687EDC9-9849-4DF1-802F-96E633659D06}
+	EndGlobalSection
+EndGlobal

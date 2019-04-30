@@ -1,0 +1,7 @@
+C:\Users\DRM\source\repos\DartServer\DartServerMessages\bin\Debug\DartServerMessages.exe.config
+C:\Users\DRM\source\repos\DartServer\DartServerMessages\bin\Debug\DartServerMessages.exe
+C:\Users\DRM\source\repos\DartServer\DartServerMessages\bin\Debug\DartServerMessages.pdb
+C:\Users\DRM\source\repos\DartServer\DartServerMessages\obj\Debug\DartServerMessages.csprojAssemblyReference.cache
+C:\Users\DRM\source\repos\DartServer\DartServerMessages\obj\Debug\DartServerMessages.csproj.CoreCompileInputs.cache
+C:\Users\DRM\source\repos\DartServer\DartServerMessages\obj\Debug\DartServerMessages.exe
+C:\Users\DRM\source\repos\DartServer\DartServerMessages\obj\Debug\DartServerMessages.pdb

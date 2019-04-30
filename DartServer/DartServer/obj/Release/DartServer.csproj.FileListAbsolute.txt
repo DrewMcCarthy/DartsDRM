@@ -1,0 +1,11 @@
+C:\CsharpProjects\DartsDRM\DartServer\DartServer\bin\Release\DartServer.exe.config
+C:\CsharpProjects\DartsDRM\DartServer\DartServer\bin\Release\DartServer.exe
+C:\CsharpProjects\DartsDRM\DartServer\DartServer\bin\Release\DartServer.pdb
+C:\CsharpProjects\DartsDRM\DartServer\DartServer\bin\Release\Newtonsoft.Json.dll
+C:\CsharpProjects\DartsDRM\DartServer\DartServer\bin\Release\Newtonsoft.Json.pdb
+C:\CsharpProjects\DartsDRM\DartServer\DartServer\bin\Release\Newtonsoft.Json.xml
+C:\CsharpProjects\DartsDRM\DartServer\DartServer\obj\Release\DartServer.csprojAssemblyReference.cache
+C:\CsharpProjects\DartsDRM\DartServer\DartServer\obj\Release\DartServer.csproj.CoreCompileInputs.cache
+C:\CsharpProjects\DartsDRM\DartServer\DartServer\obj\Release\DartServer.csproj.CopyComplete
+C:\CsharpProjects\DartsDRM\DartServer\DartServer\obj\Release\DartServer.exe
+C:\CsharpProjects\DartsDRM\DartServer\DartServer\obj\Release\DartServer.pdb
