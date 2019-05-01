@@ -23,12 +23,16 @@ public class GameController : MonoBehaviour
 
     #region GUI Properties
     public static GameController Instance { get; set; }
-    public List<Text> PlayerTexts;
+    public List<Text> PlayerNameTexts;
+    public List<Text> PlayerGameScoreTexts;
+    public List<Text> PlayerRoundScoreTexts;
     public Text Dart1Text;
     public Text Dart2Text;
     public Text Dart3Text;
     public Text TurnTransitionText;
     public Text NetworkUpdateText;
+    public Color ActivePlayerTextColor;
+    public Color InactivePlayerTextColor;
     #endregion
 
 
@@ -42,13 +46,28 @@ public class GameController : MonoBehaviour
         Instance = this;
         Game = GameSetup.Instance.GetGame();
 
-        PlayerTexts = new List<Text>();
+        PlayerGameScoreTexts = new List<Text>();
+        PlayerRoundScoreTexts = new List<Text>();
+
+        ActivePlayerTextColor = new Color(255f / 255f, 171f / 255f, 0f / 255f);
+        InactivePlayerTextColor = new Color(0,0,0);
 
         for (int i = 0; i < GameSetup.Instance.Players.Count; i++)
         {
-            var textboxName = "Player" + (i + 1) + "Text";
-            var textbox = GameObject.Find(textboxName).GetComponent<Text>();
-            PlayerTexts.Add(textbox);
+            // Find and add textboxes for Player names
+            var nameTextboxName = "Player" + (i + 1) + "Name";
+            var nameTextbox = GameObject.Find(nameTextboxName).GetComponent<Text>();
+            PlayerNameTexts.Add(nameTextbox);
+
+            // Find and add textboxes for GameScore
+            var gameScoretextboxName = "Player" + (i + 1) + "GameScore";
+            var gameScoretextbox = GameObject.Find(gameScoretextboxName).GetComponent<Text>();
+            PlayerGameScoreTexts.Add(gameScoretextbox);
+
+            // Find and add textboxes for RoundScore
+            var roundScoretextboxName = "Player" + (i + 1) + "RoundScore";
+            var roundScoretextbox = GameObject.Find(roundScoretextboxName).GetComponent<Text>();
+            PlayerRoundScoreTexts.Add(roundScoretextbox);
         }
 
         RenderPlayerInfo();
@@ -184,13 +203,22 @@ public class GameController : MonoBehaviour
 
     private void RenderPlayerInfo()
     {
+        // Render values and set all players' color to inactive player color
         for (int i = 0; i < Game.Players.Count; i++)
         {
-            PlayerTexts[i].text = Game.Players[i].ToString();
-            PlayerTexts[i].color = Color.black;
+            PlayerNameTexts[i].color = InactivePlayerTextColor;
+
+            PlayerGameScoreTexts[i].text = "gameScore: " + Game.Players[i].GameScore.ToString();
+            PlayerGameScoreTexts[i].color = InactivePlayerTextColor;
+
+            PlayerRoundScoreTexts[i].text = "roundScore: " + Game.Players[i].RoundScore.ToString();
+            PlayerRoundScoreTexts[i].color = InactivePlayerTextColor;
         }
 
-        PlayerTexts[Game.ActivePlayerIndex].color = Color.yellow;
+        // Update active player to active player color
+        PlayerNameTexts[Game.ActivePlayerIndex].color = ActivePlayerTextColor;
+        PlayerGameScoreTexts[Game.ActivePlayerIndex].color = ActivePlayerTextColor;
+        PlayerRoundScoreTexts[Game.ActivePlayerIndex].color = ActivePlayerTextColor;
     }
 
     private void RenderDartIndicator()

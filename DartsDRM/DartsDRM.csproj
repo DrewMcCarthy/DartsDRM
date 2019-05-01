@@ -252,13 +252,13 @@
       <HintPath>Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/CsharpProjects/DartsDRM/DartsDRM/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/DRM/source/repos/DartsDRM/DartsDRM/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/CsharpProjects/DartsDRM/DartsDRM/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/DRM/source/repos/DartsDRM/DartsDRM/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/CsharpProjects/DartsDRM/DartsDRM/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/DRM/source/repos/DartsDRM/DartsDRM/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -633,10 +633,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\GameState\ArduinoInput.cs" />
+    <Compile Include="Assets\Scripts\GameState\BluetoothInput.cs" />
     <Compile Include="Assets\Scripts\GameState\Constants.cs" />
     <Compile Include="Assets\Scripts\GameState\Dart.cs" />
     <Compile Include="Assets\Scripts\GameState\DartMap\DartMapBoard.cs" />
+    <Compile Include="Assets\Scripts\GameState\DartMap\DartMapBoard10x10.cs" />
     <Compile Include="Assets\Scripts\GameState\DartMap\DartMapKeyboard.cs" />
     <Compile Include="Assets\Scripts\GameState\Games\Game.cs" />
     <Compile Include="Assets\Scripts\GameState\Games\ZeroOne.cs" />
