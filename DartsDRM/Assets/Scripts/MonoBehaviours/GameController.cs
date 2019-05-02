@@ -31,8 +31,9 @@ public class GameController : MonoBehaviour
     public Text Dart3Text;
     public Text TurnTransitionText;
     public Text NetworkUpdateText;
-    public Color ActivePlayerTextColor;
-    public Color InactivePlayerTextColor;
+
+    private Color _activePlayerTextColor;
+    private Color _inactivePlayerTextColor;
     #endregion
 
 
@@ -49,8 +50,8 @@ public class GameController : MonoBehaviour
         PlayerGameScoreTexts = new List<Text>();
         PlayerRoundScoreTexts = new List<Text>();
 
-        ActivePlayerTextColor = new Color(255f / 255f, 171f / 255f, 0f / 255f);
-        InactivePlayerTextColor = new Color(0,0,0);
+        _activePlayerTextColor = new Color(255f / 255f, 171f / 255f, 0f / 255f);
+        _inactivePlayerTextColor = new Color(0,0,0);
 
         for (int i = 0; i < GameSetup.Instance.Players.Count; i++)
         {
@@ -206,19 +207,19 @@ public class GameController : MonoBehaviour
         // Render values and set all players' color to inactive player color
         for (int i = 0; i < Game.Players.Count; i++)
         {
-            PlayerNameTexts[i].color = InactivePlayerTextColor;
+            PlayerNameTexts[i].color = _inactivePlayerTextColor;
 
             PlayerGameScoreTexts[i].text = "gameScore: " + Game.Players[i].GameScore.ToString();
-            PlayerGameScoreTexts[i].color = InactivePlayerTextColor;
+            PlayerGameScoreTexts[i].color = _inactivePlayerTextColor;
 
             PlayerRoundScoreTexts[i].text = "roundScore: " + Game.Players[i].RoundScore.ToString();
-            PlayerRoundScoreTexts[i].color = InactivePlayerTextColor;
+            PlayerRoundScoreTexts[i].color = _inactivePlayerTextColor;
         }
 
         // Update active player to active player color
-        PlayerNameTexts[Game.ActivePlayerIndex].color = ActivePlayerTextColor;
-        PlayerGameScoreTexts[Game.ActivePlayerIndex].color = ActivePlayerTextColor;
-        PlayerRoundScoreTexts[Game.ActivePlayerIndex].color = ActivePlayerTextColor;
+        PlayerNameTexts[Game.ActivePlayerIndex].color = _activePlayerTextColor;
+        PlayerGameScoreTexts[Game.ActivePlayerIndex].color = _activePlayerTextColor;
+        PlayerRoundScoreTexts[Game.ActivePlayerIndex].color = _activePlayerTextColor;
     }
 
     private void RenderDartIndicator()

@@ -73,6 +73,10 @@ namespace Assets.Scripts.GameState.Games
         {
             if(ActivePlayer.GameScore == 0)
             {
+                if(_outMode == OutMode.OpenOut)
+                {
+                    IsWin = true;
+                }
                 if(_outMode == OutMode.DoubleOut && dart.Multiplier == 2)
                 {
                     IsWin = true;
