@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\GameState\MessageWrapper.cs" />
     <Compile Include="Assets\Scripts\GameState\OnlineDart.cs" />
     <Compile Include="Assets\Scripts\GameState\Player.cs" />
+    <Compile Include="Assets\Scripts\GameState\ThrowDartEventArgs.cs" />
     <Compile Include="Assets\Scripts\GameState\ThrowHistory.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\Client.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\ExitOnClick.cs" />

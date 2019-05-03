@@ -23,12 +23,9 @@ public class GameController : MonoBehaviour
 
     #region GUI Properties
     public static GameController Instance { get; set; }
-    public List<Text> PlayerNameTexts;
-    public List<Text> PlayerGameScoreTexts;
-    public List<Text> PlayerRoundScoreTexts;
-    public Text Dart1Text;
-    public Text Dart2Text;
-    public Text Dart3Text;
+    private List<Text> PlayerNameTexts;
+    private List<Text> PlayerGameScoreTexts;
+    private List<Text> PlayerRoundScoreTexts;
     public Text TurnTransitionText;
     public Text NetworkUpdateText;
 
@@ -46,9 +43,11 @@ public class GameController : MonoBehaviour
     {
         Instance = this;
         Game = GameSetup.Instance.GetGame();
+        Game.OnDartThrown += OnDartThrown;
 
         PlayerGameScoreTexts = new List<Text>();
         PlayerRoundScoreTexts = new List<Text>();
+        PlayerNameTexts = new List<Text>();
 
         _activePlayerTextColor = new Color(255f / 255f, 171f / 255f, 0f / 255f);
         _inactivePlayerTextColor = new Color(0,0,0);
@@ -190,6 +189,17 @@ public class GameController : MonoBehaviour
     {
         _networkUpdate = "Opponent Disonnected";
     }
+
+    // Event method that responds to the game action of processing a dart and determining it's value
+    private void OnDartThrown(object sender, ThrowDartEventArgs e)
+    {
+        Debug.Log("Dart thrown event : " + e.Dart.ToString());
+
+        // Get dart text
+        var textName = "Dart" + e.DartNumberInRound + "Text";
+        var animator = GameObject.Find(textName).GetComponent<Animator>();
+        animator.Play("DartTextAnim");
+    }
     #endregion
 
 
@@ -224,9 +234,26 @@ public class GameController : MonoBehaviour
 
     private void RenderDartIndicator()
     {
-        Dart1Text.text = Game.DartsThisTurn.ElementAt(0) != null ? Game.DartsThisTurn.ElementAt(0).ToString() : "Dart";
-        Dart2Text.text = Game.DartsThisTurn.ElementAt(1) != null ? Game.DartsThisTurn.ElementAt(1).ToString() : "Dart";
-        Dart3Text.text = Game.DartsThisTurn.ElementAt(2) != null ? Game.DartsThisTurn.ElementAt(2).ToString() : "Dart";
+        for(int i=0; i<3; i++)
+        {
+            // Reset as if no darts were thrown before setting values for thrown darts
+
+            // Get dart image
+            var imageName = "Dart" + (i + 1) + "Image";
+            var image = GameObject.Find(imageName).GetComponent<Image>();
+            image.enabled = true;
+
+            // Get dart text
+            var textName = "Dart" + (i + 1) + "Text";
+            var text = GameObject.Find(textName).GetComponent<Text>();
+            text.text = "";
+
+            if (Game.DartsThisTurn.ElementAt(i) != null)
+            {
+                image.enabled = false;
+                text.text = Game.DartsThisTurn.ElementAt(i).ToString();
+            }
+        }
     }
     #endregion
 

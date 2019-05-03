@@ -21,6 +21,7 @@ namespace Assets.Scripts.GameState.Games
         public int DartsThisTurnCount { get; set; }
         public bool IsBust { get; set; }
         public bool IsWin { get; set; }
+        public EventHandler<ThrowDartEventArgs> OnDartThrown;
         #endregion
 
         #region Constructor
@@ -41,6 +42,8 @@ namespace Assets.Scripts.GameState.Games
             // Add to round's darts
             DartsThisTurn[DartsThisTurnCount] = dart;
             DartsThisTurnCount++;
+
+            OnDartThrown(this, new ThrowDartEventArgs(dart, DartsThisTurnCount));
 
             SetRoundScore();
 
