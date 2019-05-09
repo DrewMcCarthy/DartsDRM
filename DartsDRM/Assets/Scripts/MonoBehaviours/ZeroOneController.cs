@@ -299,6 +299,8 @@ public class ZeroOneController : MonoBehaviour
         // Do immediately when called
         _inTransition = true;
         Debug.Log("Win transition START");
+
+        ActivePlayerNameText.enabled = false;
         TurnTransitionText.text = Game.ActivePlayer.Name + " WINS!";
 
         // Yield to game loop for # seconds
@@ -312,7 +314,7 @@ public class ZeroOneController : MonoBehaviour
         Debug.Log("Win transition END");
 
         Game.EndTurn();
-        SceneManager.LoadScene("GameStats");
+        SceneManager.LoadScene("ZeroOneStats");
     }
 
     IEnumerator BustTransition()
@@ -320,6 +322,8 @@ public class ZeroOneController : MonoBehaviour
         // Do immediately when called
         _inTransition = true;
         Debug.Log("Bust transition START");
+
+        ActivePlayerNameText.enabled = false;
         TurnTransitionText.text = Game.ActivePlayer.Name + " BUSTED!";
 
         // Yield to game loop for # seconds
@@ -332,6 +336,7 @@ public class ZeroOneController : MonoBehaviour
         Game.EndTurn();
 
         _inTransition = false;
+        ActivePlayerNameText.enabled = true;
         Debug.Log("Bust transition END");
     }
 

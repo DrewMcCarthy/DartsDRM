@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameStatsController : MonoBehaviour
+public class ZeroOneStatsController : MonoBehaviour
 {
     public Text P1Ppd;
     public Text P2Ppd;
@@ -22,6 +23,11 @@ public class GameStatsController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     private string GetPlayerPpd(int playerIndex)
