@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     private List<Text> PlayerRoundScoreTexts;
     public Text TurnTransitionText;
     public Text NetworkUpdateText;
+    public Text ActivePlayerNameText;
 
     private Color _activePlayerTextColor;
     private Color _inactivePlayerTextColor;
@@ -219,17 +220,18 @@ public class GameController : MonoBehaviour
         {
             PlayerNameTexts[i].color = _inactivePlayerTextColor;
 
-            PlayerGameScoreTexts[i].text = "gameScore: " + Game.Players[i].GameScore.ToString();
+            PlayerGameScoreTexts[i].text = Game.Players[i].GameScore.ToString();
             PlayerGameScoreTexts[i].color = _inactivePlayerTextColor;
 
-            PlayerRoundScoreTexts[i].text = "roundScore: " + Game.Players[i].RoundScore.ToString();
-            PlayerRoundScoreTexts[i].color = _inactivePlayerTextColor;
+            PlayerRoundScoreTexts[i].text = Game.Players[i].RoundScore.ToString();
+            PlayerRoundScoreTexts[i].enabled = false;
         }
 
         // Update active player to active player color
         PlayerNameTexts[Game.ActivePlayerIndex].color = _activePlayerTextColor;
         PlayerGameScoreTexts[Game.ActivePlayerIndex].color = _activePlayerTextColor;
-        PlayerRoundScoreTexts[Game.ActivePlayerIndex].color = _activePlayerTextColor;
+        PlayerRoundScoreTexts[Game.ActivePlayerIndex].enabled = true;
+        ActivePlayerNameText.text = Game.ActivePlayer.Name;
     }
 
     private void RenderDartIndicator()
@@ -256,9 +258,7 @@ public class GameController : MonoBehaviour
         }
     }
     #endregion
-
-
-
+    
 
     #region Transitions
     IEnumerator TurnTransition()
@@ -266,6 +266,8 @@ public class GameController : MonoBehaviour
         // Do immediately when called
         _inTransition = true;
         Debug.Log("Turn transition START");
+
+        ActivePlayerNameText.enabled = false;
         TurnTransitionText.text = Game.NextPlayer.Name + " is up next";
 
         // Yield to game loop for # seconds
@@ -278,6 +280,7 @@ public class GameController : MonoBehaviour
         Game.EndTurn();
 
         _inTransition = false;
+        ActivePlayerNameText.enabled = true;
         Debug.Log("Turn transition END");
     }
 

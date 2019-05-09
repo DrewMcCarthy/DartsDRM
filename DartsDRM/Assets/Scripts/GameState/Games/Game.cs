@@ -56,6 +56,7 @@ namespace Assets.Scripts.GameState.Games
         // Main method that should call other methods to determine
         // how to update player score and marks
         public abstract int GetDartValue(Dart dart);
+
         public abstract void CheckWinner(Dart dart);
         public abstract void BustOnPoints(Dart dart);
         public abstract void AddRoundDartsToPlayer();
@@ -78,7 +79,6 @@ namespace Assets.Scripts.GameState.Games
 
         public void EndTurn()
         {
-
             // Methods that act on player whose turn is ending
             AddRoundDartsToPlayer();
             RevertGameScoreOnBust();

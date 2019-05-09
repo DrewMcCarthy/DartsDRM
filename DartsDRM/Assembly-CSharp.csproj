@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\MonoBehaviours\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\LobbyInfo.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\LobbyManager.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviours\LongClickButton.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\MenuController.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\ServerGame.cs" />
     <None Include="Assets\JsonDotNet\link.xml" />
