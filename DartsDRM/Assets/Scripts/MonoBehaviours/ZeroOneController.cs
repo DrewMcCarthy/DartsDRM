@@ -181,6 +181,11 @@ public class ZeroOneController : MonoBehaviour
         Game.ThrowDart(dart);
     }
 
+    public void UndoThrow()
+    {
+        Game.UndoThrow();
+    }
+
     public void EndGame()
     {
         SceneManager.LoadScene("MainMenu");

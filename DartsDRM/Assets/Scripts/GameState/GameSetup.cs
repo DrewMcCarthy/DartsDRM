@@ -34,6 +34,7 @@ namespace Assets.Scripts.GameState
         public event EventHandler OnPlayerCountReached;
         public List<Player> Players = new List<Player>();
         public string GameName { get; set; }
+        public string GameType { get; set; }
         public int PlayerCount { get; set; }
         public bool IsOnline { get; set; }
         public int LobbyPlayerCount { get; set; }
@@ -88,19 +89,19 @@ namespace Assets.Scripts.GameState
             }
         }
 
-
         public Game GetGame()
         {
+            Debug.Log("Game Type : " + GameType);
             Debug.Log("Game Name : " + GameName);
 
             if (GameName == "301")
             {
                 return new ZeroOne(75); 
             }
-            //else if (GameName == "Cricket")
-            //{
-            //    return new Cricket();
-            //}
+            else if (GameName == "501")
+            {
+                return new ZeroOne(501);
+            }
             else
             {
                 throw new Exception("Invalid Game");

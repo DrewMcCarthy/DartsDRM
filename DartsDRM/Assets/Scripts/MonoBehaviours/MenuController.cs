@@ -28,12 +28,6 @@ public class MenuController : MonoBehaviour
         InOutModeText.text = Constants.InOutModes[_inOutModeIndex];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private static void DestroyNetworkObjects()
     {
         var networkObjects = GameObject.FindGameObjectsWithTag("Network");
@@ -46,10 +40,16 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void SetGame(string game)
+    public void SetGameType(string gameType)
     {
-        GameSetup.Instance.GameName = game;
-        Debug.Log("Game Type : " + GameSetup.Instance.GameName);
+        GameSetup.Instance.GameType = gameType;
+        Debug.Log("Game Type : " + GameSetup.Instance.GameType);
+    }
+
+    public void SetGameName(string gameName)
+    {
+        GameSetup.Instance.GameName = gameName;
+        Debug.Log("Game Name : " + GameSetup.Instance.GameName);
     }
 
     public void SetPlayerCount(int playerCount)
@@ -61,6 +61,7 @@ public class MenuController : MonoBehaviour
     {
         GameSetup.Instance.IsOnline = isOnline;
 
+        // For local games add the number of players selected in options to the game to start
         if (!isOnline)
         {
             for(int i = 1; i <= GameSetup.Instance.PlayerCount; i++)
@@ -89,6 +90,6 @@ public class MenuController : MonoBehaviour
 
     private void OnPlayerCountReached(object sender, EventArgs e)
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(GameSetup.Instance.GameType);
     }
 }

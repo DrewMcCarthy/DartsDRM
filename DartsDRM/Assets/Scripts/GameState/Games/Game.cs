@@ -91,6 +91,19 @@ namespace Assets.Scripts.GameState.Games
         {
             ActivePlayer.RoundScore = 0;
         }
+
+        public void UndoThrow()
+        {
+            if (DartsThisTurnCount > 0 && DartsThisTurn[DartsThisTurnCount - 1] != default)
+            {
+                var undoneDart = DartsThisTurn[DartsThisTurnCount - 1];
+
+                DartsThisTurn[DartsThisTurnCount - 1] = default;
+                DartsThisTurnCount--;
+                ActivePlayer.GameScore += undoneDart.Value;
+                SetRoundScore();
+            }
+        }
         #endregion
     }
 }
