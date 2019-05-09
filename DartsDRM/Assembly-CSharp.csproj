@@ -76,7 +76,6 @@
     <Compile Include="Assets\Scripts\GameState\ThrowHistory.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\Client.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\ExitOnClick.cs" />
-    <Compile Include="Assets\Scripts\MonoBehaviours\GameController.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\GameStatsController.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\LobbyInfo.cs" />
@@ -84,6 +83,7 @@
     <Compile Include="Assets\Scripts\MonoBehaviours\LongClickButton.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\MenuController.cs" />
     <Compile Include="Assets\Scripts\MonoBehaviours\ServerGame.cs" />
+    <Compile Include="Assets\Scripts\MonoBehaviours\ZeroOneController.cs" />
     <None Include="Assets\JsonDotNet\link.xml" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/DRM/source/repos/DartsDRM/DartsDRM/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

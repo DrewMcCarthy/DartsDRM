@@ -21,10 +21,10 @@ namespace Assets.Scripts.MonoBehaviours
         public GameObject ClientPrefab;
         private Client _client;
 
-        private void Awake()
+        private async Task Awake()
         {
             _client = Instantiate(ClientPrefab).GetComponent<Client>();
-            _client.ConnectToServer();
+            await _client.ConnectToServerAsync();
 
             CreatedButtons = new List<GameObject>();
         }

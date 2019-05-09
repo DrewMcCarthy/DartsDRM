@@ -51,22 +51,18 @@ public class BluetoothInput : MonoBehaviour
 		Communication,
 	}
 
-	private bool _workingFoundDevice = true;
 	private bool _connected = false;
 	private float _timeout = 0f;
 	private States _state = States.None;
-	private bool _foundID = false;
 
 	// this is our hm10 device
 	private string _hm10;
 
 	void Reset()
 	{
-		_workingFoundDevice = false;	// used to guard against trying to connect to a second device while still connecting to the first
 		_connected = false;
 		_timeout = 0f;
 		_state = States.None;
-		_foundID = false;
 		_hm10 = null;
 	}
 
@@ -148,8 +144,6 @@ public class BluetoothInput : MonoBehaviour
 						    // this is the best way to filter out devices
 						    if (name.Contains (DeviceName))
 						    {
-							    _workingFoundDevice = true;
-
 							    // it is always a good idea to stop scanning while you connect to a device
 							    // and get things set up
 							    BluetoothLEHardwareInterface.StopScan();
@@ -162,17 +156,12 @@ public class BluetoothInput : MonoBehaviour
                                 Debug.Log("Found Dartboard");
 
                                 SetState (States.Connect, 0.5f);
-
-							    _workingFoundDevice = false;
 						    }
 
 					    }, null, false, false);
 					    break;
 
 				    case States.Connect:
-					    // set these flags
-					    _foundID = false;
-
 					    //HM10_Status.text = "Connecting to Dartboard";
                         Debug.Log("Connecting to Dartboard");
 
@@ -216,9 +205,9 @@ public class BluetoothInput : MonoBehaviour
 						   //HM10_Status.text = "Received Serial: " + Encoding.UTF8.GetString (bytes);
                             Debug.Log("Received Serial: " + Encoding.UTF8.GetString(bytes));
 
-                            if (GameController.Instance != null)
+                            if (ZeroOneController.Instance != null)
                             {
-                                GameController.Instance.ThrowDart(Encoding.UTF8.GetString(bytes));
+                                ZeroOneController.Instance.ThrowDart(Encoding.UTF8.GetString(bytes));
                             }
 					    });
 

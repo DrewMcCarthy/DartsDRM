@@ -9,6 +9,11 @@ namespace Assets.Scripts.GameState.Games
 {
     public class ZeroOne : Game
     {
+        #region Properties
+        public bool IsBust { get; set; }
+        #endregion
+
+
         #region Fields
         private int _startScore;
         //private InMode _inMode;
@@ -56,14 +61,6 @@ namespace Assets.Scripts.GameState.Games
             }
         }
 
-        public override void RevertGameScoreOnBust()
-        {
-            if (IsBust)
-            {
-                ActivePlayer.GameScore = ActivePlayer.PrevGameScore;
-            }
-        }
-
         public override int GetDartValue(Dart dart)
         {
             return (dart.Mark * dart.Multiplier);
@@ -84,7 +81,36 @@ namespace Assets.Scripts.GameState.Games
             }
         }
 
-        public override void BustOnPoints(Dart dart)
+        public override void EndTurn()
+        {
+            // Methods that act on player whose turn is ending
+            AddRoundDartsToPlayer();
+            RevertGameScoreOnBust();
+            ResetRoundScore();
+
+            Array.Clear(DartsThisTurn, 0, DartsThisTurn.Length);
+            DartsThisTurnCount = 0;
+
+            // Update active player index
+            IncrementActivePlayer();
+
+            TurnOver = false;
+            IsBust = false;
+        }
+        #endregion
+
+
+        #region Methods
+        private void InitGameScore()
+        {
+            foreach(var player in GameSetup.Instance.Players)
+            {
+                player.GameScore = _startScore;
+                player.PrevGameScore = _startScore;
+            }
+        }
+
+        public void BustOnPoints(Dart dart)
         {
             if (_outMode == OutMode.DoubleOut)
             {
@@ -106,16 +132,12 @@ namespace Assets.Scripts.GameState.Games
                 }
             }
         }
-        #endregion
 
-
-        #region Methods
-        private void InitGameScore()
+        public void RevertGameScoreOnBust()
         {
-            foreach(var player in GameSetup.Instance.Players)
+            if (IsBust)
             {
-                player.GameScore = _startScore;
-                player.PrevGameScore = _startScore;
+                ActivePlayer.GameScore = ActivePlayer.PrevGameScore;
             }
         }
         #endregion

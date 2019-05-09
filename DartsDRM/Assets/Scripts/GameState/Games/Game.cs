@@ -19,7 +19,6 @@ namespace Assets.Scripts.GameState.Games
         public bool TurnOver { get; set; }
         public Dart[] DartsThisTurn { get; set; }
         public int DartsThisTurnCount { get; set; }
-        public bool IsBust { get; set; }
         public bool IsWin { get; set; }
         public EventHandler<ThrowDartEventArgs> OnDartThrown;
         #endregion
@@ -52,15 +51,13 @@ namespace Assets.Scripts.GameState.Games
                 TurnOver = true;
             }
         }
-
         // Main method that should call other methods to determine
         // how to update player score and marks
         public abstract int GetDartValue(Dart dart);
 
         public abstract void CheckWinner(Dart dart);
-        public abstract void BustOnPoints(Dart dart);
         public abstract void AddRoundDartsToPlayer();
-        public abstract void RevertGameScoreOnBust();
+        public abstract void EndTurn();
         #endregion
 
 
@@ -77,28 +74,9 @@ namespace Assets.Scripts.GameState.Games
             ActivePlayer.RoundScore = result;
         }
 
-        public void EndTurn()
-        {
-            // Methods that act on player whose turn is ending
-            AddRoundDartsToPlayer();
-            RevertGameScoreOnBust();
-            ResetRoundScore();
-
-            Array.Clear(DartsThisTurn, 0, DartsThisTurn.Length);
-            DartsThisTurnCount = 0;
-
-            // Update active player index
-            IncrementActivePlayer();
-
-            TurnOver = false;
-            IsBust = false;
-        }
-
-
-
         // Setting the previous game score here since
         // this is the earliest we access the next player
-        private void IncrementActivePlayer()
+        protected void IncrementActivePlayer()
         {
             ActivePlayerIndex++;
             if (ActivePlayerIndex > (GameSetup.Instance.PlayerCount - 1))

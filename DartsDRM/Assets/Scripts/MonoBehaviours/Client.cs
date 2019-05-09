@@ -36,8 +36,8 @@ namespace Assets.Scripts.MonoBehaviours
             GameSetup.Instance.Client = this;
         }
 
-        //public bool ConnectToServer(string host = "192.168.1.88", int port = 8088)
-        public bool ConnectToServer(string host = "127.0.0.1", int port = 8088)
+        public async Task<bool> ConnectToServerAsync(string host = "192.168.1.88", int port = 8088)
+        //public async Task<bool> ConnectToServerAsync(string host = "127.0.0.1", int port = 8088)
         {
             // If already connected, ignore
             if (_socketReady) return false;
@@ -50,7 +50,7 @@ namespace Assets.Scripts.MonoBehaviours
                 _reader = new StreamReader(_stream);
                 _socketReady = true;
 
-                ReceiveAsync(_socket);
+                await ReceiveAsync(_socket);
             }
             catch (Exception e)
             {
@@ -70,7 +70,7 @@ namespace Assets.Scripts.MonoBehaviours
                 Debug.Log("Received line : " + line);
 
                 var mw = JsonConvert.DeserializeObject<MessageWrapper>(line);
-                OnIncomingData(mw);
+                await OnIncomingDataAsync(mw);
             }
             catch (Exception e)
             {
@@ -78,7 +78,7 @@ namespace Assets.Scripts.MonoBehaviours
             }
         }
 
-        private async void Update()
+        private void Update()
         {
             if (_socketReady)
             {
@@ -86,7 +86,7 @@ namespace Assets.Scripts.MonoBehaviours
             }
         }
 
-        private void OnIncomingData(MessageWrapper messageWrapper)
+        private async Task OnIncomingDataAsync(MessageWrapper messageWrapper)
         {
 
             if (messageWrapper.Type == MessageType.PlayerGuid)
@@ -132,22 +132,22 @@ namespace Assets.Scripts.MonoBehaviours
                 Debug.Log("(dart) : " + messageWrapper.Message);
                 var onlineDart = JsonConvert.DeserializeObject<OnlineDart>(messageWrapper.Message.ToString());
 
-                GameController.Instance.ThrowOnlineDart(onlineDart);
+                ZeroOneController.Instance.ThrowOnlineDart(onlineDart);
             }
             else if(messageWrapper.Type == MessageType.EndTurn)
             {
                 Debug.Log("(end turn) : " + messageWrapper.Message);
                 var playerGuid = Guid.Parse(messageWrapper.Message.ToString());
-                GameController.Instance.SetTurnOver(playerGuid);
+                ZeroOneController.Instance.SetTurnOver(playerGuid);
             }
             else if(messageWrapper.Type == MessageType.Disconnect)
             {
                 Debug.Log("(disconnect) : " + messageWrapper.Message);
-                GameController.Instance.OpponentDisconnected();
+                ZeroOneController.Instance.OpponentDisconnected();
             }
 
 
-            ReceiveAsync(_socket);
+            await ReceiveAsync(_socket);
         }
 
         public void SendHostGame()

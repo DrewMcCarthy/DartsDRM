@@ -13,7 +13,7 @@ using UnityEngine.UI;
 /// 
 /// View on top of the Game
 ///
-public class GameController : MonoBehaviour
+public class ZeroOneController : MonoBehaviour
 {
     #region Fields
     private bool _inTransition;
@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
 
 
     #region GUI Properties
-    public static GameController Instance { get; set; }
+    public static ZeroOneController Instance { get; set; }
     private List<Text> PlayerNameTexts;
     private List<Text> PlayerGameScoreTexts;
     private List<Text> PlayerRoundScoreTexts;
@@ -36,14 +36,14 @@ public class GameController : MonoBehaviour
 
 
     #region Game state Properties
-    public Game Game;
+    public ZeroOne Game;
     #endregion
 
     #region Unity lifecycle Methods
     private void Awake()
     {
         Instance = this;
-        Game = GameSetup.Instance.GetGame();
+        Game = (ZeroOne)GameSetup.Instance.GetGame();
         Game.OnDartThrown += OnDartThrown;
 
         PlayerGameScoreTexts = new List<Text>();
