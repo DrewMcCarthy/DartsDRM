@@ -186,6 +186,11 @@ public class ZeroOneController : MonoBehaviour
         Game.UndoThrow();
     }
 
+    public void EndTurn()
+    {
+        SetTurnOver();
+    }
+
     public void EndGame()
     {
         SceneManager.LoadScene("MainMenu");
